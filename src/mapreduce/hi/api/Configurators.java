@@ -1,5 +1,5 @@
 package mapreduce.hi.api;
 
 public enum Configurators {
-	simple,custom,db
+	simple,custom,db,multi,combine
 }

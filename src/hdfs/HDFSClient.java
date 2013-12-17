@@ -422,7 +422,7 @@ public class HDFSClient {
 			//client.addFile(args[0], args[1]);
 			//client.readFile(args[0]);
 			//client.listContent("infodata");
-			client.hInfoReader("infodata");
+			client.hInfoReader("out1/hi");
 			//client.read("seq/historical/113");
 			//client.write(new HInfoWritable("113","redhat:1.6",1384433196012l,5), "seq/historical/113");
 			//System.out.println(client.ifExists(new Path(args[0])));

@@ -70,10 +70,13 @@ public class MultiFileSplit extends InputSplit implements Writable {
 		  for(FileSplit split: files){
 			  hosts.addAll(Arrays.asList(split.getLocations()));
 		   }
-		  return (String[]) hosts.toArray();
+		return hosts.toArray(new String[0]);
 	  }
 
 		public void add(FileSplit split) {
+			if(files == null){
+				files = new ArrayList<FileSplit>();
+			}
 			files.add(split);
 		}
 

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
-
+@Deprecated
 public class FileLineWritable implements WritableComparable<FileLineWritable> {
 	public long offset;
 	public String fileName;

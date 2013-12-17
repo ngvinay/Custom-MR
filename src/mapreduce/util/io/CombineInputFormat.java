@@ -10,7 +10,7 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.CombineFileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.CombineFileRecordReader;
 import org.apache.hadoop.mapreduce.lib.input.CombineFileSplit;
-
+@Deprecated
 public class CombineInputFormat extends CombineFileInputFormat<FileLineWritable, Text> {
   public CombineInputFormat(){
     super();

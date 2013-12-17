@@ -60,7 +60,6 @@ public class MultiInputFormat extends
 		int totalFiles = files != null ? files.size() : 0;
 
 		if (totalFiles > 0) {
-
 			for (int i = 0; i < totalFiles; i++) {
 				FileStatus file = files.get(i);
 
@@ -68,58 +67,68 @@ public class MultiInputFormat extends
 					allowedlength = fileslength;
 					splitfiles.add(file);
 					fileslength += file.getLen();
-				} else {
-					mSplit = new MultiFileSplit();
-
+				} else {					
+					
 					if (allowedlength != 0) {
-
-						for (FileStatus tempFile : splitfiles) {
-							Path path = tempFile.getPath();
-							long length = tempFile.getLen();
-							if (length != 0) {
-								BlockLocation[] blkLocations;
-
-								FileSystem fs = path.getFileSystem(job.getConfiguration());
-								
-								blkLocations = fs.getFileBlockLocations(tempFile, 0, length);
-
-								if (isSplitable(job, path)) {
-									long blockSize = tempFile.getBlockSize();
-									long splitSize = computeSplitSize(
-											blockSize, minSize, maxSize);
-
-									long bytesRemaining = length;
-									while (((double) bytesRemaining)/ splitSize > SPLIT_SLOP) {
-										int blkIndex = getBlockIndex(blkLocations, length- bytesRemaining);
-										splits.add(new MultiFileSplit(makeSplit(path, length- bytesRemaining, splitSize, blkLocations[blkIndex].getHosts())));
-										bytesRemaining -= splitSize;
-									}
-
-									if (bytesRemaining != 0) {
-										int blkIndex = getBlockIndex(blkLocations, length- bytesRemaining);
-										mSplit.add(makeSplit(path, length- bytesRemaining,bytesRemaining,blkLocations[blkIndex].getHosts()));
-									}
-								} else { // not splitable
-									mSplit.add(makeSplit(path, 0, length,blkLocations[0].getHosts()));
-								}
-							} else {
-								// Create empty hosts array for zero length
-								// files
-								mSplit.add(makeSplit(path, 0, length,new String[0]));
-							}
-						}
+						mSplit = new MultiFileSplit();
+						perform(job, minSize, maxSize, splitfiles);
+						
 						splitfiles = new ArrayList<FileStatus>();
 						fileslength = 0;
 						splits.add(mSplit);
 					}
 				}
-
+			}
+			
+			if (allowedlength != 0) {
+				mSplit = new MultiFileSplit();
+				perform(job, minSize, maxSize, splitfiles);
+				splits.add(mSplit);
 			}
 		}
 		// Save the number of input files for metrics/loadgen
 		job.getConfiguration().setLong(NUM_INPUT_FILES, totalFiles);
 		LOG.debug("Total # of splits: " + splits.size());
 		return splits;
+	}
+
+	private void perform(JobContext job, long minSize, long maxSize,
+			List<FileStatus> splitfiles) throws IOException {
+		for (FileStatus tempFile : splitfiles) {
+			Path path = tempFile.getPath();
+			long length = tempFile.getLen();
+			if (length != 0) {
+				BlockLocation[] blkLocations;
+
+				FileSystem fs = path.getFileSystem(job.getConfiguration());
+				
+				blkLocations = fs.getFileBlockLocations(tempFile, 0, length);
+
+				if (isSplitable(job, path)) {
+					long blockSize = tempFile.getBlockSize();
+					long splitSize = computeSplitSize(
+							blockSize, minSize, maxSize);
+
+					long bytesRemaining = length;
+					/*while (((double) bytesRemaining)/ splitSize > SPLIT_SLOP) {
+						int blkIndex = getBlockIndex(blkLocations, length- bytesRemaining);
+						splits.add(new MultiFileSplit(makeSplit(path, length- bytesRemaining, splitSize, blkLocations[blkIndex].getHosts())));
+						bytesRemaining -= splitSize;
+					}*/
+
+					if (bytesRemaining != 0) {
+						int blkIndex = getBlockIndex(blkLocations, length- bytesRemaining);
+						mSplit.add(makeSplit(path, length- bytesRemaining,bytesRemaining,blkLocations[blkIndex].getHosts()));
+					}
+				} else { // not splitable
+					mSplit.add(makeSplit(path, 0, length,blkLocations[0].getHosts()));
+				}
+			} else {
+				// Create empty hosts array for zero length
+				// files
+				mSplit.add(makeSplit(path, 0, length,new String[0]));
+			}
+		}
 	}
 
 	protected FileSplit makeSplit(Path file, long start, long length,

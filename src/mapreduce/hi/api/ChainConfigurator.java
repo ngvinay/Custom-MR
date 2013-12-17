@@ -84,7 +84,7 @@ public class ChainConfigurator {
 	 */
 	private static boolean firstJob(String[] otherArgs) throws IOException,
 			InterruptedException, ClassNotFoundException {
-		Configurator configurator = ConfiguratorFactory.get("db");
+		Configurator configurator = ConfiguratorFactory.get("combine");
 		Job valueJob = configurator.getJob(conf,otherArgs);
 
 		return valueJob.waitForCompletion(true);

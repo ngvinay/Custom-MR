@@ -22,4 +22,11 @@ public class ObjectLevelConfigurator implements Configurator{
 		job.setOutputValueClass(Text.class);
 		return job;
 	}
+
+	@Override
+	public Job getJob(Configuration conf, String[] otherArgs)
+			throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
