@@ -5,7 +5,7 @@ import java.io.IOException;
 import mapreduce.hi.HIKey;
 import mapreduce.hi.api.ChainConfigurator;
 import mapreduce.hi.api.Configurator;
-import mapreduce.hi.api.input.CustomInputFormat;
+import mapreduce.hi.api.Notused;
 import mapreduce.hi.api.input.multifile.MultiInputFormat;
 import mapreduce.hi.api.interval.custom.CustomCombiner;
 import mapreduce.hi.api.interval.custom.CustomMapper;
@@ -20,7 +20,7 @@ import org.apache.hadoop.mapreduce.lib.output.LazyOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
 
 import com.radiant.cisms.hdfs.seq.HInfoWritable;
-
+@Notused(reason="concept failed !")
 public class MultiFileConfigurator implements Configurator {
 
 	@Override

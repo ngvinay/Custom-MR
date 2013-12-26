@@ -1,6 +1,9 @@
 package mapreduce.util.io;
 
 import java.io.IOException;
+
+import mapreduce.hi.api.Notused;
+
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -10,6 +13,7 @@ import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.CombineFileSplit;
 import org.apache.hadoop.util.LineReader;
+@Notused(reason="concept failed !")
 @Deprecated
 public class CombineRecordReader extends RecordReader<FileLineWritable, Text> {
 	private long startOffset;

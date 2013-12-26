@@ -18,6 +18,7 @@ import org.apache.hadoop.io.compress.Decompressor;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
+import org.apache.hadoop.mapreduce.lib.input.CombineFileSplit;
 import org.junit.Test;
 
 import com.radiant.cisms.hdfs.seq.HInfoWritable;
@@ -34,11 +35,12 @@ public class CombineRecordReader extends RecordReader<LongWritable, HInfoWritabl
 	  private CustomReader in;
 	  private FSDataInputStream fileIn;
 	  private int maxLineLength;
+	  private int maxIndex;
 	  private LongWritable key;
 	  private HInfoWritable value;
 	  private Decompressor decompressor;
 	  private byte[] recordDelimiterBytes;
-	  CombineSplit combineSplit;
+	  CombineFileSplit combineSplit;
 	  TaskAttemptContext context;
 	  private boolean isEnded;
 	  
@@ -92,8 +94,9 @@ public class CombineRecordReader extends RecordReader<LongWritable, HInfoWritabl
 	@Override
 	public void initialize(InputSplit genericSplit, TaskAttemptContext context)
 			throws IOException, InterruptedException {
-		combineSplit = (CombineSplit) genericSplit;
+		combineSplit = (CombineFileSplit) genericSplit;
 		this.context = context;
+		maxIndex = combineSplit.getNumPaths();
 		initTracker++;
 	    configureFileSplit();
 	}
@@ -105,10 +108,10 @@ public class CombineRecordReader extends RecordReader<LongWritable, HInfoWritabl
 	private void configureFileSplit()
 			throws IOException {
 		configTracker++;
-		if(index >= combineSplit.getMaxIndex()){
+		if(index >= maxIndex){
 			isEnded= true;
 		}else{
-			/*if(index >= combineSplit.getMaxIndex()-1){
+			/*if(index >= maxIndex-1){
 				throw new NotFoundException(getMessage());
 			}
 			

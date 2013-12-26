@@ -1,12 +1,8 @@
 package mapreduce.hi.api;
 
 
-import org.apache.hadoop.classification.InterfaceAudience;
-import org.apache.hadoop.classification.InterfaceStability;
 import org.apache.hadoop.util.Shell;
 
-@InterfaceAudience.Private
-@InterfaceStability.Evolving
 public interface MRJobConfig {
 
   // Put all of the attribute names in here so that Job and JobContext are

@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import mapreduce.hi.api.Notused;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.fs.BlockLocation;
@@ -25,7 +27,12 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
 import com.radiant.cisms.hdfs.seq.HInfoWritable;
-
+/**
+ * it is a dropped concept
+ * @author tom
+ *
+ */
+@Notused(reason="concept failed !")
 public class MultiInputFormat extends
 		FileInputFormat<LongWritable, HInfoWritable> {
 	private static final Log LOG = LogFactory.getLog(FileInputFormat.class);

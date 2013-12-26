@@ -4,8 +4,11 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import mapreduce.hi.api.Notused;
+
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
+@Notused(reason="concept failed !")
 @Deprecated
 public class FileLineWritable implements WritableComparable<FileLineWritable> {
 	public long offset;

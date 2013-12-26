@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import mapreduce.hi.api.Notused;
+
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
-
+@Notused(reason="concept failed !")
 public class MultiFileSplit extends InputSplit implements Writable {
 	  private List<FileSplit> files;
 	  private List<String> hosts;

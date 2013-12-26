@@ -2,6 +2,8 @@ package hdfs;
 
 import java.io.Serializable;
 
+import mapreduce.hi.api.Notused;
+@Notused
 public class Text implements Serializable{
 	public String name;
 	public String type;

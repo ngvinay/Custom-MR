@@ -4,9 +4,10 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import mapreduce.hi.api.Notused;
+
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
-
 public class HITuple implements Writable {
 	private Long objId;
 	private Long time;

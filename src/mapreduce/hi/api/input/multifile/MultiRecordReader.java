@@ -2,6 +2,7 @@ package mapreduce.hi.api.input.multifile;
 
 import java.io.IOException;
 
+import mapreduce.hi.api.Notused;
 import mapreduce.hi.api.input.CustomReader;
 
 import org.apache.commons.logging.Log;
@@ -10,7 +11,6 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.fs.Seekable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.compress.CodecPool;
 import org.apache.hadoop.io.compress.CompressionCodec;
@@ -22,7 +22,7 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
 import com.radiant.cisms.hdfs.seq.HInfoWritable;
-
+@Notused(reason="concept failed !")
 public class MultiRecordReader extends RecordReader<LongWritable, HInfoWritable>{
 	 private static final Log LOG = LogFactory.getLog(MultiRecordReader.class);
 	  public static final String MAX_LINE_LENGTH = 
@@ -33,11 +33,9 @@ public class MultiRecordReader extends RecordReader<LongWritable, HInfoWritable>
 	  private long end;
 	  private CustomReader in;
 	  private FSDataInputStream fileIn;
-	  private Seekable filePosition;
 	  private int maxLineLength;
 	  private LongWritable key;
 	  private HInfoWritable value;
-	  private boolean isCompressedInput;
 	  private Decompressor decompressor;
 	  private byte[] recordDelimiterBytes;
 	  MultiFileSplit multiFileSplit;

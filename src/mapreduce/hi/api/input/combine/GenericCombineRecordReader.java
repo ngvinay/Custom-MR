@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 
 import mapreduce.hi.api.MRJobConfig;
+import mapreduce.hi.api.Notused;
 
 import org.apache.hadoop.classification.InterfaceAudience;
 import org.apache.hadoop.classification.InterfaceStability;
@@ -21,6 +22,7 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
  * these data chunks from different files.
  * @see CombineSplit
  */
+@Notused(reason="not fully understood")
 @InterfaceAudience.Public
 @InterfaceStability.Stable
 public class GenericCombineRecordReader<K, V> extends RecordReader<K, V> {

@@ -1,6 +1,8 @@
 package mapreduce;
 
+import mapreduce.hi.api.Notused;
 
+@Notused(reason="only basic")
 public abstract class MapReduce {/*
 
 	public static class Map extends

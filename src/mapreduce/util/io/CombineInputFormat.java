@@ -1,6 +1,10 @@
 package mapreduce.util.io;
 import java.io.IOException;
 
+
+
+import mapreduce.hi.api.Notused;
+
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputSplit;
@@ -10,6 +14,7 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.CombineFileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.CombineFileRecordReader;
 import org.apache.hadoop.mapreduce.lib.input.CombineFileSplit;
+@Notused(reason="concept failed !")
 @Deprecated
 public class CombineInputFormat extends CombineFileInputFormat<FileLineWritable, Text> {
   public CombineInputFormat(){

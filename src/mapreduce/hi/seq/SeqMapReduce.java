@@ -5,13 +5,14 @@ import java.io.IOException;
 import mapreduce.hi.HIKey;
 import mapreduce.hi.HITuple;
 import mapreduce.hi.Intervals;
+import mapreduce.hi.api.Notused;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import com.radiant.cisms.hdfs.seq.HInfoWritable;
-
+@Notused(reason="concept failed !")
 public class SeqMapReduce {
 	public static class Map extends Mapper<Text , HInfoWritable , HIKey, HITuple> {
 		private HIKey out = new HIKey();
