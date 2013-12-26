@@ -1,6 +1,6 @@
-package mapreduce.hi.api.input.custom;
+package mapreduce.hi.api.input.defaultcustom;
 
-import mapreduce.hi.api.input.generic.GenericReordReader;
+import mapreduce.hi.api.generic.input.GenericReordReader;
 
 public class DefaultRecordReader extends GenericReordReader<Key, Value>{
 

@@ -1,8 +1,8 @@
-package mapreduce.hi.api.input.custom;
+package mapreduce.hi.api.input.defaultcustom;
+
+import mapreduce.hi.api.generic.input.GenericInputFormat;
 
 import org.apache.hadoop.mapreduce.RecordReader;
-
-import mapreduce.hi.api.input.generic.GenericInputFormat;
 
 public class DefaultInputFormat extends GenericInputFormat<Key, Value>{
 

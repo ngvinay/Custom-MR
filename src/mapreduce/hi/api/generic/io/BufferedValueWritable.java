@@ -1,4 +1,4 @@
-package mapreduce.hi.api.input.generic;
+package mapreduce.hi.api.generic.io;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

@@ -6,12 +6,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import mapreduce.hi.api.generic.io.KeyWritable;
+
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.io.WritableUtils;
 
-public class HIKey implements WritableComparable<HIKey>{
+public class HIKey extends KeyWritable<HIKey>{
 	private Long time;
 	private Text oid;
 	private LongWritable objId;

@@ -1,7 +1,9 @@
-package mapreduce.hi.api.input.generic;
+package mapreduce.hi.api.generic.input;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import mapreduce.hi.api.generic.io.BufferedValueWritable;
 
 import org.apache.hadoop.conf.Configuration;
 

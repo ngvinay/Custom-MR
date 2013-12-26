@@ -101,11 +101,6 @@ public interface MRJobConfig {
 
   public static final String CACHE_ARCHIVES_VISIBILITIES = "mapreduce.job.cache.archives.visibilities";
 
-  /**
-   * @deprecated Symlinks are always on and cannot be disabled.
-   */
-  @Deprecated
-  public static final String CACHE_SYMLINK = "mapreduce.job.cache.symlink.create";
 
   public static final String USER_LOG_RETAIN_HOURS = "mapreduce.job.userlog.retain.hours";
 
@@ -687,5 +682,8 @@ public interface MRJobConfig {
   public static final int DEFAULT_MR_AM_MAX_ATTEMPTS = 2;
   
   public static final String MR_APPLICATION_TYPE = "MAPREDUCE";
+  
+  public static final String MR_RECORD_DELIMITER = "record.delimiter";
+  public static final String MR_KEY_VALUE_SEPARATOR = "keyvalue.separator";
   
 }
