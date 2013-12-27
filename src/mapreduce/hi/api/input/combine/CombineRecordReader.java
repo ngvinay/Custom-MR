@@ -102,7 +102,7 @@ public class CombineRecordReader extends RecordReader<LongWritable, HInfoWritabl
 	}
 	/**
 	 * this method will initialize and configure reader for next immediate file split 
-	 * in the MultiFile split.  
+	 * in the Combine split.  
 	 * @throws IOException
 	 */
 	private void configureFileSplit()

@@ -33,7 +33,7 @@ public class ChainConfigurator {
 						conf.set("fs.default.name", "hdfs://192.168.1.149:9000");
 				
 						conf.set("hadoop.job.ugi", "root");
-						conf.set("inputformat.record.delimiter", "$$$");
+						conf.set(MRJobConfig.MR_RECORD_DELIMITER, "$$$");
 						
 						// delete temporary location if already exists
 						//delete(otherArgs[1], conf);
@@ -84,7 +84,7 @@ public class ChainConfigurator {
 	 */
 	private static boolean firstJob(String[] otherArgs) throws IOException,
 			InterruptedException, ClassNotFoundException {
-		Configurator configurator = ConfiguratorFactory.get("combine");
+		Configurator configurator = ConfiguratorFactory.get("defaultconf");
 		Job valueJob = configurator.getJob(conf,otherArgs);
 
 		return valueJob.waitForCompletion(true);

@@ -8,8 +8,6 @@ import mapreduce.hi.api.input.defaultcustom.Value;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 
-import com.radiant.cisms.hdfs.seq.HInfoWritable;
-
 public class DefaultReducer extends Reducer<HIKey, Value, HIKey, Value> {
 	private Value result = null;
 	private MultipleOutputs<HIKey, Value> out;
@@ -17,12 +15,12 @@ public class DefaultReducer extends Reducer<HIKey, Value, HIKey, Value> {
 	 public void setup(Context context) {
 	   out = new MultipleOutputs<HIKey,Value>(context);	  
 	 }
-	public void reduce(HIKey key, Iterable<HInfoWritable> values, Context context)
+	public void reduce(HIKey key, Iterable<Value> values, Context context)
 			throws IOException, InterruptedException {
 		result = null;
 		double sum = 0;
 		int count = 0;
-		for (HInfoWritable val : values) {
+		for (Value val : values) {
 			if (result == null) {
 				result = new Value();
 			}
